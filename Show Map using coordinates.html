@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coordinate Map Viewer</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+    .button {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Coordinate Map Viewer</h2>
+
+  <form onsubmit="event.preventDefault(); showMap()">
+    <label for="latitude1">Latitude:</label>
+    <input type="text" id="latitude" name="latitude" required><br>
+
+    <label for="longitude1">Longitude:</label>
+    <input type="text" id="longitude" name="longitude" required><br>
+
+    <input type="submit" value="Show Map">
+  </form>
+
+  <div id="map"></div>
+
+  <script>
+    function showMap() {
+      const latitude = parseFloat(document.getElementById('latitude').value);
+      const longitude = parseFloat(document.getElementById('longitude').value);
+
+      const mapDiv = document.getElementById('map');
+      const mapOptions = {
+        center: { lat: latitude, lng: longitude },
+        zoom: 10
+      };
+
+      const map = new google.maps.Map(mapDiv, mapOptions);
+      const marker = new google.maps.Marker({
+        position: { lat: latitude, lng: longitude },
+        map: map
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</body>
+</html>
