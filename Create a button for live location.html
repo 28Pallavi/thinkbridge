@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Coordinate Map Viewer</title>
+</head>
 <body>
 
+<!-- Display a message to the user -->
 <p>Click the button to get your coordinates.</p>
 
+<!-- Button to trigger the geolocation functionality -->
 <button onclick="getLocation()">Get Live Location</button>
 
+<!-- Placeholder to display the obtained coordinates -->
 <p id="location"></p>
 
 <script>
 var x = document.getElementById("location");
 
+// Function to get the user's location
 function getLocation() {
   if (navigator.geolocation) {
+    // If geolocation is supported, watch the position continuously
     navigator.geolocation.watchPosition(showPosition);
   } else { 
+    // If geolocation is not supported, display an error message
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
-    
+
+// Function to display the obtained coordinates
 function showPosition(position) {
     x.innerHTML="Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
@@ -27,4 +37,3 @@ function showPosition(position) {
 
 </body>
 </html>
-
